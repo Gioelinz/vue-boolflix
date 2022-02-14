@@ -1,28 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <input type="text" v-model="key" />
+    <button @click="fetchApiMovies">Cerca</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from "axios";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  data() {
+    return {
+      key: "",
+      searchedMovie: [],
+      apiMovie: "https://api.themoviedb.org/3/search/movie",
+      api_key: "de777000efc1bf0e53d7f663907ef833",
+    };
+  },
+  methods: {
+    fetchApiMovies() {
+      const config = {
+        params: {
+          api_key: this.api_key,
+          language: "it-IT",
+          query: this.key,
+        },
+      };
+
+      axios.get(this.apiMovie, config).then((res) => {
+        this.searchedMovie = res.data.results;
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
