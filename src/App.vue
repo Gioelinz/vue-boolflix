@@ -5,19 +5,42 @@
       <button @click="fetchApiMovies">Cerca</button>
     </div>
     <div class="container">
-      <div class="row">
-        <div class="col-3" v-for="movie in searchedMovies" :key="movie.id">
-          <div class="movie-card">
-            <h2>{{ movie.title }}</h2>
-            <h3>({{ movie.original_title }})</h3>
-            <p>{{ movie.original_language }}</p>
-            <img
-              :src="require(`${assignImgLanguage(movie.original_language)}`)"
-              width="50"
-              height="50"
-              :alt="movie.title"
-            />
-            <p>{{ movie.vote_average }}</p>
+      <div class="cards-container" v-if="searchedMovies != 0">
+        <h1>Films</h1>
+        <div class="row">
+          <div class="col-3" v-for="movie in searchedMovies" :key="movie.id">
+            <div class="movie-card">
+              <h2>{{ movie.title }}</h2>
+              <h3>({{ movie.original_title }})</h3>
+              <p>{{ movie.original_language }}</p>
+              <img
+                :src="require(`${assignImgLanguage(movie.original_language)}`)"
+                width="50"
+                height="50"
+                :alt="movie.title"
+              />
+              <p>{{ movie.vote_average }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-container" v-if="searchedTV != 0">
+        <h1>Serie Tv</h1>
+        <div class="row">
+          <div class="col-3" v-for="tv in searchedTV" :key="tv.id">
+            <div class="movie-card">
+              <h2>{{ tv.name }}</h2>
+              <h3>({{ tv.original_name }})</h3>
+              <p>{{ tv.original_language }}</p>
+              <img
+                :src="require(`${assignImgLanguage(tv.original_language)}`)"
+                width="50"
+                height="50"
+                :alt="tv.title"
+              />
+              <p>{{ tv.vote_average }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -49,8 +72,7 @@ export default {
           query: this.key,
         },
       };
-      /*  const requestOne = this.apiMovie, config;
-      const requestTwo = this.apiMovie, config; */
+
       axios
         .all([axios.get(this.apiMovie, config), axios.get(this.apiTv, config)])
         .then(
