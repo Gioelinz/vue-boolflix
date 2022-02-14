@@ -7,7 +7,7 @@
       width="60"
       height="40"
       :alt="title"
-      :title="languageMov"
+      :title="languageMov || languageTv"
     />
     <p>{{ averageMov || averageTv }}</p>
   </div>
