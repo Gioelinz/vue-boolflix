@@ -11,6 +11,12 @@
             <h2>{{ movie.title }}</h2>
             <h3>({{ movie.original_title }})</h3>
             <p>{{ movie.original_language }}</p>
+            <img
+              :src="require(`${assignImgLanguage(movie.original_language)}`)"
+              width="50"
+              height="50"
+              :alt="movie.title"
+            />
             <p>{{ movie.vote_average }}</p>
           </div>
         </div>
@@ -29,11 +35,9 @@ export default {
       key: "",
       searchedMovies: [],
       apiMovie: "https://api.themoviedb.org/3/search/movie",
+      apiTv: "https://api.themoviedb.org/3/search/tv",
       api_key: "de777000efc1bf0e53d7f663907ef833",
-      languagesImg: {
-        en: "./assets/img/en.png",
-        it: "./assets/img/it.png",
-      },
+      languagesImg: "",
     };
   },
   methods: {
@@ -49,6 +53,20 @@ export default {
       axios.get(this.apiMovie, config).then((res) => {
         this.searchedMovies = res.data.results;
       });
+    },
+    assignImgLanguage(language) {
+      switch (language) {
+        case "en":
+          this.languagesImg = "./assets/img/en.png";
+          break;
+        case "it":
+          this.languagesImg = "./assets/img/it.png";
+          break;
+        default:
+          this.languagesImg = "./assets/img/global.png";
+          break;
+      }
+      return this.languagesImg;
     },
   },
 };
