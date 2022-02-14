@@ -34,10 +34,10 @@ export default {
     return {
       key: "",
       searchedMovies: [],
+      searchedTV: [],
       apiMovie: "https://api.themoviedb.org/3/search/movie",
       apiTv: "https://api.themoviedb.org/3/search/tv",
       api_key: "de777000efc1bf0e53d7f663907ef833",
-      languagesImg: "",
     };
   },
   methods: {
@@ -49,24 +49,34 @@ export default {
           query: this.key,
         },
       };
-
-      axios.get(this.apiMovie, config).then((res) => {
-        this.searchedMovies = res.data.results;
-      });
+      /*  const requestOne = this.apiMovie, config;
+      const requestTwo = this.apiMovie, config; */
+      axios
+        .all([axios.get(this.apiMovie, config), axios.get(this.apiTv, config)])
+        .then(
+          axios.spread((resMv, resTv) => {
+            this.searchedMovies = resMv.data.results;
+            this.searchedTV = resTv.data.results;
+          })
+        )
+        .catch((err) => {
+          console.log(err);
+        });
     },
     assignImgLanguage(language) {
+      let flag;
       switch (language) {
         case "en":
-          this.languagesImg = "./assets/img/en.png";
+          flag = "./assets/img/en.png";
           break;
         case "it":
-          this.languagesImg = "./assets/img/it.png";
+          flag = "./assets/img/it.png";
           break;
         default:
-          this.languagesImg = "./assets/img/global.png";
+          flag = "./assets/img/global.png";
           break;
       }
-      return this.languagesImg;
+      return flag;
     },
   },
 };
