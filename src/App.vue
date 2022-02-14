@@ -9,18 +9,12 @@
         <h1>Films</h1>
         <div class="row">
           <div class="col-3" v-for="movie in searchedMovies" :key="movie.id">
-            <div class="movie-card">
-              <h2>{{ movie.title }}</h2>
-              <h3>({{ movie.original_title }})</h3>
-              <p>{{ movie.original_language }}</p>
-              <img
-                :src="require(`${assignImgLanguage(movie.original_language)}`)"
-                width="50"
-                height="50"
-                :alt="movie.title"
-              />
-              <p>{{ movie.vote_average }}</p>
-            </div>
+            <Card
+              :title="movie.title"
+              :original_title="movie.original_title"
+              :language-mov="movie.original_language"
+              :average-mov="movie.vote_average"
+            />
           </div>
         </div>
       </div>
@@ -29,18 +23,12 @@
         <h1>Serie Tv</h1>
         <div class="row">
           <div class="col-3" v-for="tv in searchedTV" :key="tv.id">
-            <div class="movie-card">
-              <h2>{{ tv.name }}</h2>
-              <h3>({{ tv.original_name }})</h3>
-              <p>{{ tv.original_language }}</p>
-              <img
-                :src="require(`${assignImgLanguage(tv.original_language)}`)"
-                width="50"
-                height="50"
-                :alt="tv.title"
-              />
-              <p>{{ tv.vote_average }}</p>
-            </div>
+            <Card
+              :name="tv.name"
+              :original_name="tv.original_name"
+              :language-tv="tv.original_language"
+              :average-tv="tv.vote_average"
+            />
           </div>
         </div>
       </div>
@@ -51,8 +39,13 @@
 <script>
 import axios from "axios";
 
+import Card from "./components/Card.vue";
+
 export default {
   name: "App",
+  components: {
+    Card,
+  },
   data() {
     return {
       key: "",
@@ -84,21 +77,6 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-    },
-    assignImgLanguage(language) {
-      let flag;
-      switch (language) {
-        case "en":
-          flag = "./assets/img/en.png";
-          break;
-        case "it":
-          flag = "./assets/img/it.png";
-          break;
-        default:
-          flag = "./assets/img/global.png";
-          break;
-      }
-      return flag;
     },
   },
 };
