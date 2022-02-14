@@ -1,7 +1,21 @@
 <template>
   <div id="app">
-    <input type="text" v-model="key" />
-    <button @click="fetchApiMovies">Cerca</button>
+    <div class="search">
+      <input type="text" v-model="key" @keyup.enter="fetchApiMovies" />
+      <button @click="fetchApiMovies">Cerca</button>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-3" v-for="movie in searchedMovies" :key="movie.id">
+          <div class="movie-card">
+            <h2>{{ movie.title }}</h2>
+            <h3>({{ movie.original_title }})</h3>
+            <p>{{ movie.original_language }}</p>
+            <p>{{ movie.vote_average }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,9 +27,13 @@ export default {
   data() {
     return {
       key: "",
-      searchedMovie: [],
+      searchedMovies: [],
       apiMovie: "https://api.themoviedb.org/3/search/movie",
       api_key: "de777000efc1bf0e53d7f663907ef833",
+      languagesImg: {
+        en: "./assets/img/en.png",
+        it: "./assets/img/it.png",
+      },
     };
   },
   methods: {
@@ -29,7 +47,7 @@ export default {
       };
 
       axios.get(this.apiMovie, config).then((res) => {
-        this.searchedMovie = res.data.results;
+        this.searchedMovies = res.data.results;
       });
     },
   },
@@ -37,4 +55,5 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~bootstrap/scss/bootstrap.scss";
 </style>
