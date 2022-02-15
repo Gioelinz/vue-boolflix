@@ -48,6 +48,11 @@ export default {
   },
   methods: {
     fetchApiMovies() {
+      if (!this.key) {
+        this.searchedMovies = [];
+        this.searchedTV = [];
+        return;
+      }
       const config = {
         params: {
           api_key: this.api_key,
