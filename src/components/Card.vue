@@ -35,7 +35,8 @@
         ></i>
       </div>
       <p>
-        <strong>Trama: </strong><em>{{ item.overview }}</em>
+        <strong>Trama: </strong
+        ><em> {{ item.overview || "Non Disponibile" }}</em>
       </p>
     </div>
   </div>
@@ -107,6 +108,8 @@ export default {
     width: 342px;
     height: 513px;
     overflow-y: auto;
+    animation: slide-in-bck-center 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      both;
     em {
       font-weight: 200;
       font-size: 1.1rem;
@@ -114,6 +117,18 @@ export default {
     .fa-star {
       color: #ffbd00;
     }
+  }
+}
+@keyframes slide-in-bck-center {
+  0% {
+    -webkit-transform: translateZ(600px);
+    transform: translateZ(600px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
   }
 }
 </style>

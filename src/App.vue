@@ -4,7 +4,7 @@
     <main>
       <div class="container">
         <div class="cards-container" v-if="searchedMovies != 0">
-          <h2 class="px-3 my-3 titles">Films</h2>
+          <h2 class="px-3 my-4 titles">Films</h2>
           <div class="row gy-5">
             <div
               class="col col-md-6 col-lg-4"
@@ -17,7 +17,7 @@
         </div>
 
         <div class="cards-container" v-if="searchedTV != 0">
-          <h2 class="px-3 my-3 titles">Serie Tv</h2>
+          <h2 class="px-3 my-4 titles">Serie Tv</h2>
           <div class="row gy-5">
             <div
               class="col col-md-6 col-lg-4"
@@ -28,7 +28,7 @@
             </div>
           </div>
         </div>
-        <div class="search_alert" v-else>
+        <div v-else class="search_alert">
           <h2>Cerca Films o Serie Tv!</h2>
         </div>
       </div>
