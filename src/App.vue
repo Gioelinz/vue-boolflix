@@ -9,12 +9,7 @@
         <h1>Films</h1>
         <div class="row">
           <div class="col-3" v-for="movie in searchedMovies" :key="movie.id">
-            <Card
-              :title="movie.title"
-              :original_title="movie.original_title"
-              :language-mov="movie.original_language"
-              :average-mov="movie.vote_average"
-            />
+            <Card :item="movie" />
           </div>
         </div>
       </div>
@@ -23,12 +18,7 @@
         <h1>Serie Tv</h1>
         <div class="row">
           <div class="col-3" v-for="tv in searchedTV" :key="tv.id">
-            <Card
-              :name="tv.name"
-              :original_name="tv.original_name"
-              :language-tv="tv.original_language"
-              :average-tv="tv.vote_average"
-            />
+            <Card :item="tv" />
           </div>
         </div>
       </div>

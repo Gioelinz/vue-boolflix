@@ -1,31 +1,22 @@
 <template>
   <div class="container-card">
-    <h2>{{ title || name }}</h2>
-    <h3>({{ original_title || original_name }})</h3>
+    <h2>{{ item.title || item.name }}</h2>
+    <h3>({{ item.original_title || item.original_name }})</h3>
     <img
-      :src="assignImgLanguage(languageMov || languageTv)"
+      :src="assignImgLanguage(item.original_language)"
       width="60"
       height="40"
-      :alt="title"
-      :title="languageMov || languageTv"
+      :alt="item.title || item.name"
+      :title="item.original_language"
     />
-    <p>{{ averageMov || averageTv }}</p>
+    <p>{{ item.vote_average }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: "Card",
-  props: [
-    "title",
-    "original_title",
-    "languageMov",
-    "averageMov",
-    "name",
-    "original_name",
-    "languageTv",
-    "averageTv",
-  ],
+  props: ["item"],
   methods: {
     assignImgLanguage(language) {
       let flag;
