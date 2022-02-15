@@ -77,6 +77,7 @@ body {
   background-color: #434343;
   color: white;
   font-family: "Kanit", sans-serif;
+  animation: color-change-2x 3s linear infinite alternate both;
   .titles {
     font-size: 3rem;
     text-decoration: underline;
@@ -89,6 +90,14 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+@keyframes color-change-2x {
+  0% {
+    background: #5c5c5c;
+  }
+  100% {
+    background: #424242;
   }
 }
 </style>

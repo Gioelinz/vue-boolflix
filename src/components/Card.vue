@@ -112,7 +112,7 @@ export default {
   }
   .hover-menu {
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     top: 0;
     right: 0;
     left: 0;
@@ -121,8 +121,9 @@ export default {
     width: 342px;
     height: 513px;
     overflow-y: auto;
-    animation: slide-in-bck-center 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    animation: swing-in-bottom-bck 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)
       both;
+
     em {
       font-weight: 200;
       font-size: 1.1rem;
@@ -136,15 +137,20 @@ export default {
     }
   }
 }
-@keyframes slide-in-bck-center {
+
+@keyframes swing-in-bottom-bck {
   0% {
-    -webkit-transform: translateZ(600px);
-    transform: translateZ(600px);
+    -webkit-transform: rotateX(-70deg);
+    transform: rotateX(-70deg);
+    -webkit-transform-origin: bottom;
+    transform-origin: bottom;
     opacity: 0;
   }
   100% {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    -webkit-transform-origin: bottom;
+    transform-origin: bottom;
     opacity: 1;
   }
 }
