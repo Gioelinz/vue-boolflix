@@ -1,52 +1,21 @@
 <template>
   <div id="app">
     <Header @get-term="fetchApiMovies" placeholder="Cerca qui..." />
-    <main>
-      <div class="container">
-        <div class="cards-container" v-if="searchedMovies != 0">
-          <h2 class="px-3 my-4 titles">Films</h2>
-          <div class="row gy-5">
-            <div
-              class="col col-md-6 col-lg-4"
-              v-for="movie in searchedMovies"
-              :key="movie.id"
-            >
-              <Card :item="movie" />
-            </div>
-          </div>
-        </div>
-
-        <div class="cards-container" v-if="searchedTV != 0">
-          <h2 class="px-3 my-4 titles">Serie Tv</h2>
-          <div class="row gy-5">
-            <div
-              class="col col-md-6 col-lg-4"
-              v-for="tv in searchedTV"
-              :key="tv.id"
-            >
-              <Card :item="tv" />
-            </div>
-          </div>
-        </div>
-        <div v-else class="search_alert">
-          <h2>Cerca Films o Serie Tv!</h2>
-        </div>
-      </div>
-    </main>
+    <Main :searched-movies="searchedMovies" :searchedTV="searchedTV" />
   </div>
 </template>
 
 <script>
 import axios from "axios";
 
-import Card from "./components/Card.vue";
 import Header from "./components/Header.vue";
+import Main from "./components/Main.vue";
 
 export default {
   name: "App",
   components: {
-    Card,
     Header,
+    Main,
   },
   data() {
     return {
@@ -101,7 +70,7 @@ body {
     text-decoration: underline;
   }
   h2 {
-    color: black;
+    color: rgb(24, 24, 24);
   }
   .search_alert {
     position: absolute;
