@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header @get-term="fetchApiMovies" />
+    <Header @get-term="fetchApiMovies" placeholder="Cerca qui..." />
     <main>
       <div class="container">
         <div class="cards-container" v-if="searchedMovies != 0">
@@ -28,7 +28,9 @@
             </div>
           </div>
         </div>
-        <h2 class="search_alert" v-else>Cerca Films o Serie Tv!</h2>
+        <div class="search_alert" v-else>
+          <h2>Cerca Films o Serie Tv!</h2>
+        </div>
       </div>
     </main>
   </div>
@@ -97,6 +99,15 @@ body {
   .titles {
     font-size: 3rem;
     text-decoration: underline;
+  }
+  h2 {
+    color: black;
+  }
+  .search_alert {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 </style>

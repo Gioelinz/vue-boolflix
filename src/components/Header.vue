@@ -1,9 +1,16 @@
 <template>
   <header class="d-flex align-items-center justify-content-between px-4">
-    <h1>BOOLFLIX</h1>
-    <div class="search">
-      <input type="text" v-model="key" @keyup.enter="sendTerm" />
-      <button @click="sendTerm">Cerca</button>
+    <h1 @click="resetTerm" role="button">BOOLFLIX</h1>
+    <div class="search d-flex align-content-center">
+      <input
+        type="text"
+        v-model.trim="key"
+        @keyup.enter="sendTerm"
+        :placeholder="placeholder"
+      />
+      <button class="btn btn-danger btn-sm ms-2" @click="sendTerm">
+        Cerca
+      </button>
     </div>
   </header>
 </template>
@@ -11,6 +18,7 @@
 <script>
 export default {
   name: "Header",
+  props: ["placeholder"],
   data() {
     return {
       key: "",
@@ -19,6 +27,10 @@ export default {
   methods: {
     sendTerm() {
       this.$emit("get-term", this.key);
+    },
+    resetTerm() {
+      this.$emit("get-term", "");
+      this.key = "";
     },
   },
 };
@@ -30,6 +42,12 @@ header {
   height: 80px;
   h1 {
     color: red;
+  }
+  input {
+    color: #dc3545;
+    &:focus-visible {
+      outline: 1px auto #dc3545;
+    }
   }
 }
 </style>
