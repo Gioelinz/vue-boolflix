@@ -1,6 +1,6 @@
 <template>
   <div class="container-card">
-    <img :src="assignImgPoster" :alt="item.title || item.name" />
+    <img class="poster" :src="assignImgPoster" :alt="item.title || item.name" />
     <h2>{{ item.title || item.name }}</h2>
     <h3>({{ item.original_title || item.original_name }})</h3>
     <img
@@ -66,4 +66,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.poster {
+  height: 513px;
+  width: 342px;
+}
 </style>

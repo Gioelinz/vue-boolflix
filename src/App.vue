@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <div class="search">
-      <input type="text" v-model="key" @keyup.enter="fetchApiMovies" />
-      <button @click="fetchApiMovies">Cerca</button>
-    </div>
+    <Header @get-term="fetchApiMovies" />
+
     <div class="container">
       <div class="cards-container" v-if="searchedMovies != 0">
-        <h1>Films</h1>
+        <h1 class="px-3">Films</h1>
         <div class="row">
-          <div class="col-3" v-for="movie in searchedMovies" :key="movie.id">
+          <div
+            class="col col-md-6 col-lg-4"
+            v-for="movie in searchedMovies"
+            :key="movie.id"
+          >
             <Card :item="movie" />
           </div>
         </div>
@@ -30,11 +32,13 @@
 import axios from "axios";
 
 import Card from "./components/Card.vue";
+import Header from "./components/Header.vue";
 
 export default {
   name: "App",
   components: {
     Card,
+    Header,
   },
   data() {
     return {
@@ -47,8 +51,8 @@ export default {
     };
   },
   methods: {
-    fetchApiMovies() {
-      if (!this.key) {
+    fetchApiMovies(term) {
+      if (!term) {
         this.searchedMovies = [];
         this.searchedTV = [];
         return;
@@ -57,7 +61,7 @@ export default {
         params: {
           api_key: this.api_key,
           language: "it-IT",
-          query: this.key,
+          query: term,
         },
       };
 
@@ -79,4 +83,10 @@ export default {
 
 <style lang="scss">
 @import "~bootstrap/scss/bootstrap.scss";
+
+body {
+  background-color: #434343;
+  color: white;
+  font-family: "Kanit", sans-serif;
+}
 </style>
