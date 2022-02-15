@@ -26,6 +26,9 @@
           </div>
         </div>
       </div>
+      <div v-else-if="notFound" class="search_alert">
+        <h2 class="text-danger">NON E' STATO TROVATO NESSUN RISULTATO</h2>
+      </div>
       <div v-else class="search_alert">
         <h2>CERCA FILMS O SERIE TV&#11016;</h2>
       </div>
@@ -37,7 +40,7 @@
 import Card from "../components/Card.vue";
 export default {
   name: "Main",
-  props: ["searchedMovies", "searchedTV"],
+  props: ["searchedMovies", "searchedTV", "notFound"],
   components: {
     Card,
   },

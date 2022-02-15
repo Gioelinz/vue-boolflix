@@ -24,6 +24,12 @@
       <div class="star-container">
         <strong>Voto: </strong>
         <i
+          v-for="(star, index) in totalStars"
+          :key="index"
+          class="fa-star fa-lg"
+          :class="[averageFormat > index ? 'fa-solid' : 'fa-regular']"
+        ></i>
+        <!-- <i
           v-for="(star, index) in averageFormat"
           :key="index"
           class="fa-solid fa-star fa-lg"
@@ -32,7 +38,7 @@
           v-for="(star, index, keyStars) in totalStars - averageFormat"
           :key="keyStars"
           class="fa-regular fa-star fa-lg"
-        ></i>
+        ></i> -->
       </div>
       <p>
         <strong>Trama: </strong

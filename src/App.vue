@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Header @get-term="fetchApiMovies" placeholder="Cerca qui..." />
-    <Main :searched-movies="searchedMovies" :searchedTV="searchedTV" />
+    <Main
+      :searched-movies="searchedMovies"
+      :searchedTV="searchedTV"
+      :not-found="notFound"
+    />
   </div>
 </template>
 
@@ -22,6 +26,7 @@ export default {
       key: "",
       searchedMovies: [],
       searchedTV: [],
+      notFound: false,
       apiMovie: "https://api.themoviedb.org/3/search/movie",
       apiTv: "https://api.themoviedb.org/3/search/tv",
       api_key: "de777000efc1bf0e53d7f663907ef833",
@@ -32,8 +37,10 @@ export default {
       if (!term) {
         this.searchedMovies = [];
         this.searchedTV = [];
+        this.notFound = false;
         return;
       }
+
       const config = {
         params: {
           api_key: this.api_key,
@@ -48,6 +55,11 @@ export default {
           axios.spread((resMv, resTv) => {
             this.searchedMovies = resMv.data.results;
             this.searchedTV = resTv.data.results;
+            if (
+              resMv.data.results.length == 0 &&
+              resTv.data.results.length == 0
+            )
+              this.notFound = true;
           })
         )
         .catch((err) => {
