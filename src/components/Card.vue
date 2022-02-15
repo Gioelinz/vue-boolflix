@@ -18,8 +18,8 @@
       class="fa-solid fa-star fa-lg"
     ></i>
     <i
-      v-for="(star, index) in 5 - averageFormat"
-      :key="index"
+      v-for="(star, index, keyStars) in 5 - averageFormat"
+      :key="keyStars"
       class="fa-regular fa-star fa-lg"
     ></i>
   </div>
@@ -29,6 +29,7 @@
 export default {
   name: "Card",
   props: ["item"],
+
   methods: {
     assignImgLanguage(language) {
       let flag;
