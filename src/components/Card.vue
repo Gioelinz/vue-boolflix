@@ -29,7 +29,7 @@
           class="fa-solid fa-star fa-lg"
         ></i>
         <i
-          v-for="(star, index, keyStars) in 5 - averageFormat"
+          v-for="(star, index, keyStars) in totalStars - averageFormat"
           :key="keyStars"
           class="fa-regular fa-star fa-lg"
         ></i>
@@ -49,6 +49,7 @@ export default {
   data() {
     return {
       isHover: false,
+      totalStars: 5,
     };
   },
 
@@ -61,6 +62,12 @@ export default {
           break;
         case "it":
           flag = require("../assets/img/it.png");
+          break;
+        case "de":
+          flag = require("../assets/img/de.png");
+          break;
+        case "fr":
+          flag = require("../assets/img/fr.png");
           break;
         default:
           flag = require("../assets/img/global.jpg");
@@ -103,7 +110,7 @@ export default {
     top: 0;
     right: 0;
     left: 0;
-    background-color: #000;
+    background-color: rgba(#000, 0.9);
     border-radius: 15px;
     width: 342px;
     height: 513px;
@@ -116,6 +123,10 @@ export default {
     }
     .fa-star {
       color: #ffbd00;
+    }
+    .fa-star.fa-regular:hover {
+      font-family: "Font Awesome 6 Free";
+      font-weight: 600;
     }
   }
 }
