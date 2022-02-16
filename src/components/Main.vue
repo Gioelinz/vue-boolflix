@@ -9,7 +9,7 @@
             v-for="movie in searchedMovies"
             :key="movie.id"
           >
-            <Card :item="movie" />
+            <Card :item="movie" :movie-id="movie.id" />
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
             v-for="tv in searchedTV"
             :key="tv.id"
           >
-            <Card :item="tv" />
+            <Card :item="tv" :tv-id="tv.id" />
           </div>
         </div>
       </div>

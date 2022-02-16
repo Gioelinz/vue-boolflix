@@ -53,15 +53,17 @@ import axios from "axios";
 
 export default {
   name: "Card",
-  props: ["item"],
+  props: ["item", "movieId", "tvId"],
   data() {
     return {
       isHover: false,
       totalStars: 5,
-      cast: [],
+      castMovie: [],
+      castTv: [],
       apiCast: {
         api_key: "de777000efc1bf0e53d7f663907ef833",
-        baseUri: "https://api.themoviedb.org/3/movie/",
+        baseUriMovie: "https://api.themoviedb.org/3/movie/",
+        baseUriTv: "https://api.themoviedb.org/3/tv/",
         endUri: "/credits",
       },
     };
@@ -89,20 +91,54 @@ export default {
       }
       return flag;
     },
-    fetchApiCredits() {
-      if (this.item) {
-        const { api_key, baseUri, endUri } = this.apiCast;
-        const config = {
-          params: {
-            api_key,
-            language: "it-IT",
-          },
-        };
-        axios.get(baseUri + this.item.id + endUri, config).then((res) => {
-          this.cast = res.data.cast;
+
+    /* apiCallCast(url, array) {
+      axios
+        .get(url)
+        .then((res) => {
+          this[array] = res.data.cast;
+        })
+        .catch((err) => {
+          console.log(err);
         });
+    }, */
+
+    fetchApiCredits() {
+      const { api_key, baseUriMovie, baseUriTv, endUri } = this.apiCast;
+
+      const config = {
+        params: {
+          api_key,
+          language: "it-IT",
+        },
+      };
+      const movieUrl = baseUriMovie + this.movieId + endUri;
+      const tvUrl = baseUriTv + this.tvId + endUri;
+
+      if (this.movieId) {
+        axios
+          .get(movieUrl, config)
+          .then((res) => {
+            this.castMovie = res.data.cast;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else if (this.tvId) {
+        axios
+          .get(tvUrl, config)
+          .then((res) => {
+            this.castTv = res.data.cast;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
+  },
+
+  mounted() {
+    this.fetchApiCredits();
   },
 
   computed: {
@@ -119,9 +155,6 @@ export default {
       vote = Math.ceil(vote);
       return vote;
     },
-  },
-  mounted() {
-    this.fetchApiCredits();
   },
 };
 </script>
