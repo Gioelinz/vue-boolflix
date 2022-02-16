@@ -92,6 +92,28 @@ body {
     transform: translate(-50%, -50%);
   }
 }
+/* Custom Scrollbar */
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: black;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  &:hover {
+    background-color: red;
+  }
+}
+/* Keyframes */
+
 @keyframes color-change-2x {
   0% {
     background: #5c5c5c;

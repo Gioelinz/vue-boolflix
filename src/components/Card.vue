@@ -187,7 +187,8 @@ export default {
     width: 342px;
     height: 513px;
     overflow-y: auto;
-    animation: puff-in-ver 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+    /* animation: puff-in-ver 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) both; */
+    animation: flip-in-diag-1-tr 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 
     em {
       font-weight: 200;
@@ -202,7 +203,21 @@ export default {
     }
   }
 }
-@keyframes puff-in-ver {
+
+@keyframes flip-in-diag-1-tr {
+  0% {
+    -webkit-transform: rotate3d(1, 1, 0, -80deg);
+    transform: rotate3d(1, 1, 0, -80deg);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotate3d(1, 1, 0, 0deg);
+    transform: rotate3d(1, 1, 0, 0deg);
+    opacity: 1;
+  }
+}
+
+/* @keyframes puff-in-ver {
   0% {
     -webkit-transform: scaleY(2);
     transform: scaleY(2);
@@ -216,6 +231,5 @@ export default {
     -webkit-filter: blur(0px);
     filter: blur(0px);
     opacity: 1;
-  }
-}
+  } */
 </style>
