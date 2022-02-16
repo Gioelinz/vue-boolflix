@@ -1,7 +1,19 @@
 <template>
   <main>
     <div class="container">
-      <div class="cards-container" v-if="searchedMovies != 0">
+      <!-- Risultato ricerca -->
+      <h2
+        class="text-center my-4"
+        v-show="searchedMovies != 0 || searchedTV != 0"
+      >
+        Hai trovato
+        <span class="text-danger">{{ searchedMovies.length }} </span>
+        <a class="text-ref" href="#movies">Films</a> e
+        <span class="text-danger">{{ searchedTV.length }} </span>
+        <a class="text-ref" href="#series">Serie Tv</a>
+      </h2>
+      <!-- Sezione risultati -->
+      <div id="movies" class="cards-container my-4" v-if="searchedMovies != 0">
         <h2 class="px-3 my-4 titles">Films</h2>
         <div class="row gy-5">
           <div
@@ -14,7 +26,7 @@
         </div>
       </div>
 
-      <div class="cards-container" v-if="searchedTV != 0">
+      <div id="series" class="cards-container my-4" v-if="searchedTV != 0">
         <h2 class="px-3 my-4 titles">Serie Tv</h2>
         <div class="row gy-5">
           <div
@@ -47,5 +59,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.text-ref {
+  color: rgb(24, 24, 24);
+  &:hover {
+    color: #dc3545;
+  }
+}
 </style>

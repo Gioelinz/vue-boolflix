@@ -77,6 +77,7 @@ body {
   background-color: #434343;
   color: white;
   font-family: "Kanit", sans-serif;
+  scroll-behavior: smooth;
   animation: color-change-2x 3s linear infinite alternate both;
   .titles {
     font-size: 3rem;
@@ -84,6 +85,7 @@ body {
   }
   h2 {
     color: rgb(24, 24, 24);
+    animation: focus-in-contract 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   }
   .search_alert {
     position: absolute;
@@ -95,7 +97,7 @@ body {
 /* Custom Scrollbar */
 
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: black;
   border-radius: 20px;
 }
@@ -113,6 +115,20 @@ body {
   }
 }
 /* Keyframes */
+
+@keyframes focus-in-contract {
+  0% {
+    letter-spacing: 1em;
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
 
 @keyframes color-change-2x {
   0% {
