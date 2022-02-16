@@ -1,11 +1,15 @@
 <template>
   <div id="app">
-    <Header @get-term="fetchApiMovies" placeholder="Cerca qui..." />
+    <Header id="head" @get-term="fetchApiMovies" placeholder="Cerca qui..." />
     <Main
       :searched-movies="searchedMovies"
       :searchedTV="searchedTV"
       :not-found="notFound"
     />
+
+    <a href="#head" id="to-head" class="btn btn-danger p-3"
+      ><i class="fa-solid fa-arrow-up fa-2xl"></i
+    ></a>
   </div>
 </template>
 
@@ -93,6 +97,14 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  #to-head {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    .fa-solid.fa-arrow-up {
+      animation: bounce 0.9s infinite both;
+    }
+  }
 }
 /* Custom Scrollbar */
 
@@ -116,6 +128,8 @@ body {
 }
 /* Keyframes */
 
+/* Animazione testo */
+
 @keyframes focus-in-contract {
   0% {
     letter-spacing: 1em;
@@ -129,6 +143,7 @@ body {
     opacity: 1;
   }
 }
+/* Animazione BG */
 
 @keyframes color-change-2x {
   0% {
@@ -136,6 +151,19 @@ body {
   }
   100% {
     background: #424242;
+  }
+}
+/* Animazione freccia */
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(-10px);
   }
 }
 </style>
