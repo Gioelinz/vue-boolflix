@@ -187,8 +187,7 @@ export default {
     width: 342px;
     height: 513px;
     overflow-y: auto;
-    animation: swing-in-bottom-bck 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)
-      both;
+    animation: puff-in-ver 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) both;
 
     em {
       font-weight: 200;
@@ -203,20 +202,19 @@ export default {
     }
   }
 }
-
-@keyframes swing-in-bottom-bck {
+@keyframes puff-in-ver {
   0% {
-    -webkit-transform: rotateX(-70deg);
-    transform: rotateX(-70deg);
-    -webkit-transform-origin: bottom;
-    transform-origin: bottom;
+    -webkit-transform: scaleY(2);
+    transform: scaleY(2);
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
     opacity: 0;
   }
   100% {
-    -webkit-transform: rotateX(0);
-    transform: rotateX(0);
-    -webkit-transform-origin: bottom;
-    transform-origin: bottom;
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
     opacity: 1;
   }
 }
