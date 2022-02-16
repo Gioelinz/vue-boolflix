@@ -46,8 +46,11 @@ header {
   input {
     color: #dc3545;
     border-radius: 8px;
+    background-color: #434343;
     &:focus-visible {
-      outline: 1px auto #dc3545;
+      outline: none;
+      border: 1px solid red;
+      box-shadow: 0px 0px 4px 1px red;
     }
   }
 }
