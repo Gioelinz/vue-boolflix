@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Card",
   props: ["item"],
@@ -56,6 +58,12 @@ export default {
     return {
       isHover: false,
       totalStars: 5,
+      cast: [],
+      apiCast: {
+        api_key: "de777000efc1bf0e53d7f663907ef833",
+        baseUri: "https://api.themoviedb.org/3/movie/",
+        endUri: "/credits",
+      },
     };
   },
 
@@ -81,7 +89,22 @@ export default {
       }
       return flag;
     },
+    fetchApiCredits() {
+      if (this.item) {
+        const { api_key, baseUri, endUri } = this.apiCast;
+        const config = {
+          params: {
+            api_key,
+            language: "it-IT",
+          },
+        };
+        axios.get(baseUri + this.item.id + endUri, config).then((res) => {
+          this.cast = res.data.cast;
+        });
+      }
+    },
   },
+
   computed: {
     assignImgPoster() {
       if (!this.item.poster_path) {
@@ -96,6 +119,9 @@ export default {
       vote = Math.ceil(vote);
       return vote;
     },
+  },
+  mounted() {
+    this.fetchApiCredits();
   },
 };
 </script>
