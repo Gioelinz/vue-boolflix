@@ -45,6 +45,7 @@ header {
   }
   input {
     color: #dc3545;
+    border-radius: 8px;
     &:focus-visible {
       outline: 1px auto #dc3545;
     }

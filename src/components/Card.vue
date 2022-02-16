@@ -1,12 +1,7 @@
 <template>
   <div class="container-card">
-    <img
-      @mouseenter="isHover = true"
-      class="poster"
-      :src="assignImgPoster"
-      :alt="item.title || item.name"
-    />
-    <div @mouseleave="isHover = false" v-if="isHover" class="hover-menu p-3">
+    <img class="poster" :src="assignImgPoster" :alt="item.title || item.name" />
+    <div class="hover-menu p-3">
       <h5><strong>Titolo: </strong>{{ item.title || item.name }}</h5>
       <h5 class="mb-0">
         <strong>Titolo originale: </strong>({{
@@ -63,7 +58,6 @@ export default {
   props: ["item", "movieId", "tvId"],
   data() {
     return {
-      isHover: false,
       totalStars: 5,
       castMovie: [],
       castTv: [],
@@ -169,6 +163,10 @@ export default {
 <style lang="scss" scoped>
 .container-card {
   position: relative;
+  max-width: max-content;
+  &:hover .hover-menu {
+    display: block;
+  }
   .poster {
     height: 513px;
     width: 342px;
@@ -177,6 +175,7 @@ export default {
     box-shadow: 0px 0px 10px 2px #000000;
   }
   .hover-menu {
+    display: none;
     position: absolute;
     z-index: 1;
     top: 0;
