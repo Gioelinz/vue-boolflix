@@ -29,16 +29,23 @@
           class="fa-star fa-lg"
           :class="[averageFormat > index ? 'fa-solid' : 'fa-regular']"
         ></i>
-        <!-- <i
-          v-for="(star, index) in averageFormat"
-          :key="index"
-          class="fa-solid fa-star fa-lg"
-        ></i>
-        <i
-          v-for="(star, index, keyStars) in totalStars - averageFormat"
-          :key="keyStars"
-          class="fa-regular fa-star fa-lg"
-        ></i> -->
+      </div>
+      <div class="cast-movie">
+        <p v-show="castMovie.length">
+          <strong>Cast:</strong>
+          <em v-for="(actorMovie, index) in castMovie" :key="actorMovie.id">
+            <span v-if="index < 5"> {{ actorMovie.name }}, </span>
+          </em>
+        </p>
+      </div>
+
+      <div class="cast-tv">
+        <p v-show="castTv.length">
+          <strong>Cast:</strong>
+          <em v-for="(actorTv, index) in castTv" :key="actorTv.id">
+            <span v-if="index < 5"> {{ actorTv.name }}, </span>
+          </em>
+        </p>
       </div>
       <p>
         <strong>Trama: </strong
