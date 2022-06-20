@@ -29,7 +29,8 @@
         <p v-show="castMovie.length">
           <strong>Cast:</strong>
           <em v-for="(actorMovie, index) in castMovie" :key="actorMovie.id">
-            <span v-if="index < 5"> {{ actorMovie.name }}, </span>
+           <span v-if="index < 5"> {{ actorMovie.name }}<span v-if="index != 4">,</span><span v-else>.</span>
+              </span>
           </em>
         </p>
       </div>
@@ -38,7 +39,8 @@
         <p v-show="castTv.length">
           <strong>Cast:</strong>
           <em v-for="(actorTv, index) in castTv" :key="actorTv.id">
-            <span v-if="index < 5"> {{ actorTv.name }}, </span>
+            <span v-if="index < 5"> {{ actorTv.name }}<span v-if="index != 4">,</span><span v-else>.</span>
+              </span>
           </em>
         </p>
       </div>
